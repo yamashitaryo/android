@@ -29,6 +29,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, CalendarView.OnD
 
         val registerScheduleButton: Button = findViewById(R.id.registerScheduleButton)
         registerScheduleButton.setOnClickListener(this)
+
+        val cal = Calendar.getInstance()
+        year = cal.get(Calendar.YEAR)
+        month = cal.get(Calendar.MONTH) + 1
+        day = cal.get(Calendar.DATE)
+        val textDate: TextView = findViewById(R.id.date)
+        textDate.setText(""+year+"年"+(month+1)+"月"+day+ "日")
     }
 
     override fun onClick(v: View?) {
@@ -44,7 +51,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, CalendarView.OnD
                 sm.setSchedule(title, year, month, day)
             }
         }
-
     }
 
     override fun onSelectedDayChange(p0: CalendarView?, p1: Int, p2: Int, p3: Int) {
