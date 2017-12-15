@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Reminder</string>
+    <string name="go_today">今日に戻る</string>
 </resources>
