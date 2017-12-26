@@ -20,34 +20,23 @@
         app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
     <EditText
-        android:id="@+id/timeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginTop="43dp"
-        android:ems="10"
-        android:inputType="time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectedDateTextView" />
-
-    <EditText
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="29dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeText" />
+        app:layout_constraintTop_toBottomOf="@+id/hourText" />
 
     <TextView
         android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginTop="24dp"
-        android:text="日付"
+        android:text="日時"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/selectedDateTextView"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,11 +45,11 @@
         android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="39dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
         android:text="時刻"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/timeText"
+        app:layout_constraintEnd_toStartOf="@+id/hourText"
         app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
 
     <TextView
@@ -85,5 +74,46 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hourTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="時"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/minuteText"
+        app:layout_constraintTop_toBottomOf="@+id/selectedDateTextView" />
+
+    <TextView
+        android:id="@+id/minuteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="49dp"
+        android:layout_marginTop="30dp"
+        android:text="分"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectedDateTextView" />
+
+    <EditText
+        android:id="@+id/hourText"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="numberSigned"
+        app:layout_constraintEnd_toStartOf="@+id/hourTextView"
+        app:layout_constraintTop_toBottomOf="@+id/selectedDateTextView" />
+
+    <EditText
+        android:id="@+id/minuteText"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="numberSigned"
+        app:layout_constraintEnd_toStartOf="@+id/minuteTextView"
+        app:layout_constraintTop_toBottomOf="@+id/selectedDateTextView" />
 
 </android.support.constraint.ConstraintLayout>

@@ -4,10 +4,8 @@ package com.example.psyche.reminder
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, CalendarView.OnDateChangeListener {
@@ -33,8 +31,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, CalendarView.OnD
         year = cal.get(Calendar.YEAR)
         month = cal.get(Calendar.MONTH)
         day = cal.get(Calendar.DATE)
-        val textDate: TextView = findViewById(R.id.date)
-        textDate.setText(""+year+"年"+(month+1)+"月"+day+ "日")
+
+        val scheduleView: TextView = findViewById(R.id.scheduleView)
+        scheduleView.setText(""+year+"年"+(month+1)+"月"+day+ "日")
+        scheduleView.append("\n予定なし")
     }
 
     override fun onClick(v: View?) {
@@ -45,22 +45,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, CalendarView.OnD
                 calendar.setDate(today)
             }
             R.id.registerScheduleButton -> {
-                val scheduleTitle: EditText = findViewById(R.id.scheduleTitle)
-                val title: String = scheduleTitle.getText().toString()
-                sm.setSchedule(title, year, month, day)
-
                 val intent = Intent(this@MainActivity, Main2Activity::class.java)
-                intent.putExtra("today", ""+year+"年"+(month+1)+"月"+day+ "日")
+                intent.putExtra("todayText", ""+year+"年"+(month+1)+"月"+day+ "日")
+                intent.putExtra("year", year)
+                intent.putExtra("month", month)
+                intent.putExtra("day", day)
                 startActivity(intent)
             }
         }
     }
 
     override fun onSelectedDayChange(p0: CalendarView?, p1: Int, p2: Int, p3: Int) {
-        val textDate: TextView = findViewById(R.id.date)
-        textDate.setText(""+p1+"年"+(p2+1)+"月"+p3+ "日")
+        val scheduleView: TextView = findViewById(R.id.scheduleView)
+        scheduleView.setText(""+p1+"年"+(p2+1)+"月"+p3+ "日")
+        scheduleView.append("\n予定なし")
 
-        scheduleTitle.setText(sm.getScheduleTitle(p1,p2,p3))
         year = p1
         month = p2
         day = p3
