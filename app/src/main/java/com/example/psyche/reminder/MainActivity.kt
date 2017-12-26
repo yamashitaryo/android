@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, CalendarView.OnDateChangeListener {
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, CalendarView.OnD
 
         val cal = Calendar.getInstance()
         year = cal.get(Calendar.YEAR)
-        month = cal.get(Calendar.MONTH) + 1
+        month = cal.get(Calendar.MONTH)
         day = cal.get(Calendar.DATE)
         val textDate: TextView = findViewById(R.id.date)
         textDate.setText(""+year+"年"+(month+1)+"月"+day+ "日")
@@ -49,6 +48,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, CalendarView.OnD
                 val scheduleTitle: EditText = findViewById(R.id.scheduleTitle)
                 val title: String = scheduleTitle.getText().toString()
                 sm.setSchedule(title, year, month, day)
+
+                val intent = Intent(this@MainActivity, Main2Activity::class.java)
+                intent.putExtra("today", ""+year+"年"+(month+1)+"月"+day+ "日")
+                startActivity(intent)
             }
         }
     }

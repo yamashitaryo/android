@@ -9,33 +9,33 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import org.w3c.dom.Text
 import java.util.*
 import java.text.SimpleDateFormat
 
 
-class Main2Activity : AppCompatActivity() {
+class Main2Activity : AppCompatActivity() ,View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val today = intent.getLongExtra("today", 1)
-        val cal = Calendar.getInstance()
-        cal.setTimeInMillis(today)
-        val sdf = SimpleDateFormat("yyyy/MM/dd")
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        val dateText: EditText = findViewById<EditText>(R.id.dateText) as EditText
-        dateText.setText(sdf.format(cal.getTime()))
-        val button: Button = findViewById<Button>(R.id.submitButton) as Button
-        button.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(v: View?) {
-                val dateText: EditText = findViewById<EditText>(R.id.dateText) as EditText
-                val timeText: EditText = findViewById<EditText>(R.id.timeText) as EditText
-                val titleText: EditText = findViewById<EditText>(R.id.titleText) as EditText
+        val button: Button = findViewById(R.id.submitButton)
+        button.setOnClickListener(this)
+
+        val today = intent.getStringExtra("today")
+        val dateText: TextView = findViewById(R.id.selectedDateTextView)
+        dateText.setText(today)
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.submitButton -> {
                 val prefer: SharedPreferences = getSharedPreferences("schedule", Context.MODE_PRIVATE)
                 val intent = Intent(this@Main2Activity, MainActivity::class.java)
                 startActivity(intent)
             }
-        })
+        }
     }
 }
